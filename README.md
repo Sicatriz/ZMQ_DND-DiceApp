@@ -1,5 +1,5 @@
 # **ZMQ_DND-DiceApp**
-** “Roll-a-dice” Service voor Dungeons & Dragons (DnD)**
+**“Roll-a-dice” Service voor Dungeons & Dragons (DnD)**
 
 ## **Overzicht:**
 Dit programma fungeert als een eenvoudige dienst om willekeurige getallen te genereren voor Dungeons & Dragons (DnD)-spellen. Het luistert naar inkomende verzoeken voor dobbelsteenworpen en antwoordt met een willekeurig getal binnen het opgegeven bereik.
