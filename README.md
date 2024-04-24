@@ -25,7 +25,7 @@ Dit programma fungeert als een eenvoudige dienst om willekeurige getallen te gen
 
 2. **Verbinding maken met ZeroMQ-kanalen:**
    - De socket `ventilator` is verbonden met een PUSH-kanaal op het adres `"tcp://benternet.pxl-ea-ict.be:24041"`.
-   - De socket `subscriber` is verbonden met een SUB-kanaal op het adres `"tcp://benternet.pxl-ea-ict.be:24042"`. Het abonneert zich op berichten die beginnen met het voorvoegsel `"DnD?>Dice>"`.
+   - De socket `subscriber` is verbonden met een SUB-kanaal op het adres `"tcp://benternet.pxl-ea-ict.be:24042"`. Het abonneert zich op berichten die beginnen met het voorvoegsel `"DnD?>Dice>[gevraagde dobbelste(e)n(en)]>[UserID]>"`.
 
 3. **Ontvangen en Verwerken van Berichten:**
    - Het programma wacht op een bericht op de socket `subscriber`.
@@ -43,7 +43,13 @@ Dit programma fungeert als een eenvoudige dienst om willekeurige getallen te gen
 - Zorg ervoor dat de ZeroMQ-bibliotheek is geïnstalleerd en correct is geconfigureerd.
 - Compileer en voer het programma uit.
 - Maak verbinding met de gespecificeerde kanalen om DnD-dobbelsteenworpverzoeken te verzenden en willekeurige getallen te ontvangen.
-- De bepaling van de dobbelrange wordt bepaald door het getal van toe te voegen van de gevraagde dobbelsteen.  Bv 4, 6, 8, 10, 12 of 20.
+- De bepaling van de dobbelrange wordt bepaald door het getal van toe te voegen van de gevraagde dobbelsteen.  Bv 4, 6, 8, 10, 12 of 20.  Het aantal gegooide dobbelstenen wordt bepaald door de waarde voor de D.  Bijvoorbeel 1D6 resulteerd in 1 dobbelsteen met een waarde tussen 1 en 6.
+
+Example:
+
+- Client doet een request met "DnD?>Dice>1D6>LordAres>" en krijgt 1 waarde tussen 1 en 6 terug (bv 5) van de service in de vorm "DnD?>Dice>1D6>LordAres>5>"
+- Client doet een request met "DnD?>Dice>2D20>LordAres>" en krijgt 2 waarden tussen 1 en 20 terug (bv 8 en 17) van de service in de vorm "DnD?>Dice>1D6>LordAres>8_17>"
+
 
 ## **Opmerkingen:**
 - Dit programma gaat uit van een specifiek berichtformaat voor DnD-dobbelsteenworpverzoeken en -antwoorden.
