@@ -4,6 +4,10 @@
 ## **Overzicht:**
 Dit programma fungeert als een eenvoudige dienst om willekeurige getallen te genereren voor Dungeons & Dragons (DnD)-spellen. Het luistert naar inkomende verzoeken voor dobbelsteenworpen en antwoordt met een willekeurig getal binnen het opgegeven bereik.
 
+## **Topologie**
+
+![DND Roll a dice topologie](https://github.com/Sicatriz/ZMQ_DND-DiceApp/blob/main/img/diagram_DND.png)
+
 ## **Afhankelijkheden:**
 - `iostream`: Bibliotheek voor invoer/uitvoer voor de console.
 - `string`: Standaard stringbibliotheek voor het manipuleren van strings.
