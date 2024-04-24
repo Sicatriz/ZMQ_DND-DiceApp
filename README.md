@@ -53,5 +53,5 @@ Example:
 
 ## **Opmerkingen:**
 - Dit programma gaat uit van een specifiek berichtformaat voor DnD-dobbelsteenworpverzoeken en -antwoorden.
-- Foutafhandeling voor ongeldige invoer of onverwachte berichten is niet geïmplementeerd in deze versie.
+- In een latere stadium kunnen bijkomende functionaliteiten uitgebreid worden zoals o.a. advantage.
 
