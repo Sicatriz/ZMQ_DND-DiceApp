@@ -53,5 +53,5 @@ Example:
 
 ## **Opmerkingen:**
 - Dit programma gaat uit van een specifiek berichtformaat voor DnD-dobbelsteenworpverzoeken en -antwoorden.
-- In een latere stadium kunnen bijkomende functionaliteiten uitgebreid worden zoals o.a. advantage.
+- In een latere stadium kunnen bijkomende functionaliteiten uitgebreid worden zoals o.a. advantage (bv ADV ipv DICE).
 
