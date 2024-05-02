@@ -77,18 +77,18 @@ int main(int argc, char *argv[])
                     // loop the # of asked trows
                     for (int trow = 0; trow < diceQ; ++trow) {
                         int random = 1 + (rand() % diceType);
-                        QString trowToSend("dice # %1 : ");
-                        trowToSend = trowToSend.arg(trow+1);
-                        ventilator.send(trowToSend.toStdString().c_str(), trowToSend.length());
+                    //    QString trowToSend("dice # %1 = ");
+                    //    trowToSend = trowToSend.arg(trow+1);
+                    //    ventilator.send(trowToSend.toStdString().c_str(), trowToSend.length());
 
-                        QString dataToSend("the value is %1.");
-                        dataToSend = dataToSend.arg(random);
-                        ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
+                    //    QString dataToSend("the value is %1.");
+                    //    dataToSend = dataToSend.arg(random);
+                    //    ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
                         QString randomS = QString::number(random);
 
 
                         finalDices.append(randomS);
-                        qDebug() << finalDices;
+                     //   qDebug() << finalDices;
 
                      //   QString totalDice;
                      //   QString tempDice;
@@ -97,7 +97,8 @@ int main(int argc, char *argv[])
                      //   std::cout << "Totals are " << totalDice.toStdString() << std::endl;
 
                     }
-                    dicesToSend = finalDices.join(",");
+                    dicesToSend = finalDices.join(space);
+                    std::cout << dicesToSend.toStdString() << std::endl;
                     ventilator.send(dicesToSend.toStdString().c_str(), dicesToSend.length());
 
 
@@ -106,26 +107,67 @@ int main(int argc, char *argv[])
                 case 6:
                     std::cout << "Asked dice is a D6" << std::endl;
                     std::cout << "# of trows is " << diceQ << std::endl;
+                    // loop the # of asked trows
+                    for (int trow = 0; trow < diceQ; ++trow) {
+                        int random = 1 + (rand() % diceType);
+
+                        QString randomS = QString::number(random);
+                        finalDices.append(randomS);
+                    }
+                    dicesToSend = finalDices.join(space);
                     break;
                 case 8:
                     std::cout << "Asked dice is a D8" << std::endl;
                     std::cout << "# of trows is " << diceQ << std::endl;
+                    // loop the # of asked trows
+                    for (int trow = 0; trow < diceQ; ++trow) {
+                        int random = 1 + (rand() % diceType);
+
+                        QString randomS = QString::number(random);
+                        finalDices.append(randomS);
+                    }
+                    dicesToSend = finalDices.join(space);
                     break;
                 case 10:
                     std::cout << "Asked dice is a D10" << std::endl;
                     std::cout << "# of trows is " << diceQ << std::endl;
+                    // loop the # of asked trows
+                    for (int trow = 0; trow < diceQ; ++trow) {
+                        int random = 1 + (rand() % diceType);
+
+                        QString randomS = QString::number(random);
+                        finalDices.append(randomS);
+                    }
+                    dicesToSend = finalDices.join(space);
                     break;
                 case 12:
                     std::cout << "Asked dice is a D12" << std::endl;
                     std::cout << "# of trows is " << diceQ << std::endl;
+                    // loop the # of asked trows
+                    for (int trow = 0; trow < diceQ; ++trow) {
+                        int random = 1 + (rand() % diceType);
+
+                        QString randomS = QString::number(random);
+                        finalDices.append(randomS);
+                    }
+                    dicesToSend = finalDices.join(space);
                     break;
                 case 20:
                     std::cout << "Asked dice is a D20" << std::endl;
                     std::cout << "# of trows is " << diceQ << std::endl;
+                    // loop the # of asked trows
+                    for (int trow = 0; trow < diceQ; ++trow) {
+                        int random = 1 + (rand() % diceType);
+
+                        QString randomS = QString::number(random);
+                        finalDices.append(randomS);
+                    }
+                    dicesToSend = finalDices.join(space);
                     break;
                 default:
                     std::cout << "Asked dice does not excist, try again." << std::endl;
                     std::cout << "Eligible dice values are 2, 4, 6, 8, 10, 12 or 20." << std::endl;
+                    dicesToSend = "Asked dice does not excist, try again. Eligible dice values are 2, 4, 6, 8, 10, 12 or 20.";
                     break;
                 }
 
@@ -134,9 +176,11 @@ int main(int argc, char *argv[])
             //    int random = 1 + (rand() % diceType);
                 std::cout << "Check OK" << std::endl;
                 ventilator.send(topicStrPub.c_str(), topicStrPub.length());
-                QString dataToSend("value is %1.");
+              //  QString dataToSend("value is %1.");
               //  dataToSend = dataToSend.arg(random);
               //  ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
+                std::cout << dicesToSend.toStdString() << std::endl;
+                ventilator.send(dicesToSend.toStdString().c_str(), dicesToSend.length());
             }
             else
             {
