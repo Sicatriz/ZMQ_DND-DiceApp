@@ -64,12 +64,42 @@ int main(int argc, char *argv[])
                 int diceQ = diceTrows.first().toInt();
              //   qDebug() << diceType;
              //   qDebug() << diceQ;
-                int random = 1 + (rand() % diceType);
+                QStringList finalDices;
+                QString space = " ";
+                QString dicesToSend;
 
+                // trow the dices by dicetype
                 switch (diceType) {
                 case 4:
                     std::cout << "Asked dice is a D4" << std::endl;
                     std::cout << "# of trows is " << diceQ << std::endl;
+
+                    // loop the # of asked trows
+                    for (int trow = 0; trow < diceQ; ++trow) {
+                        int random = 1 + (rand() % diceType);
+                        QString trowToSend("dice # %1 : ");
+                        trowToSend = trowToSend.arg(trow+1);
+                        ventilator.send(trowToSend.toStdString().c_str(), trowToSend.length());
+
+                        QString dataToSend("the value is %1.");
+                        dataToSend = dataToSend.arg(random);
+                        ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
+                        QString randomS = QString::number(random);
+
+
+                        finalDices.append(randomS);
+                        qDebug() << finalDices;
+
+                     //   QString totalDice;
+                     //   QString tempDice;
+                     //   tempDice = randomS;
+                     //   totalDice = totalDice + space + tempDice;
+                     //   std::cout << "Totals are " << totalDice.toStdString() << std::endl;
+
+                    }
+                    dicesToSend = finalDices.join(",");
+                    ventilator.send(dicesToSend.toStdString().c_str(), dicesToSend.length());
+
 
 
                     break;
@@ -99,39 +129,14 @@ int main(int argc, char *argv[])
                     break;
                 }
 
-                /*
-                switch (diceType) {
-                case 1:
-                    cout << "Monday";
-                    break;
-                case 2:
-                    cout << "Tuesday";
-                    break;
-                case 3:
-                    cout << "Wednesday";
-                    break;
-                case 4:
-                    cout << "Thursday";
-                    break;
-                case 5:
-                    cout << "Friday";
-                    break;
-                case 6:
-                    cout << "Saturday";
-                    break;
-                case 7:
-                    cout << "Sunday";
-                    break;
-                }
-*/
 
                 // Get a random number
             //    int random = 1 + (rand() % diceType);
                 std::cout << "Check OK" << std::endl;
                 ventilator.send(topicStrPub.c_str(), topicStrPub.length());
                 QString dataToSend("value is %1.");
-                dataToSend = dataToSend.arg(random);
-                ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
+              //  dataToSend = dataToSend.arg(random);
+              //  ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
             }
             else
             {
