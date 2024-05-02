@@ -2,6 +2,8 @@
 #include <string>
 #include <zmq.hpp>
 #include <QString>
+#include <QStringList>
+#include <QDebug>
 #ifndef _WIN32
 #include <unistd.h>
 #else
@@ -11,6 +13,9 @@
 
 int main(int argc, char *argv[])
 {
+    // Providing a seed value
+    srand((unsigned) time(NULL));
+
     try
     {
         zmq::context_t context(1);
@@ -21,20 +26,117 @@ int main(int argc, char *argv[])
         //Incoming messages come in here
         zmq::socket_t subscriber(context, ZMQ_SUB);
         subscriber.connect("tcp://benternet.pxl-ea-ict.be:24042");
-        subscriber.setsockopt(ZMQ_SUBSCRIBE, "DnD?>Dice>", 10);
 
-        zmq::message_t msg; // Removed the pointer declaration
+        std::string topicStrSub = "DnD?>Dice>";
+        subscriber.setsockopt(ZMQ_SUBSCRIBE, topicStrSub.c_str(), topicStrSub.length());
 
-        // Receive the message directly into msg
-        subscriber.recv(&msg);
+        while(1){
+            zmq::message_t msg; // Removed the pointer declaration
 
-        std::string received_msg = std::string(static_cast<char*>(msg.data()), msg.size());
-        std::cout << "Subscribed : [" << received_msg << "]" << std::endl;
+            // Receive the message directly into msg
+            subscriber.recv(&msg);
 
-        QString qstr = QString::fromStdString(received_msg);
+            std::string received_msg = std::string(static_cast<char*>(msg.data()), msg.size());
+            std::cout << "Subscribed : [" << received_msg << "]" << std::endl;
 
-        if (qstr == "DnD?>Dice>") {
-            ventilator.send("DnD!>Dice>DND_20>", 18);
+            QString qstr = QString::fromStdString(received_msg);
+
+
+
+            std::string topicStrPub = "DnD!>Dice>random";
+
+            if (qstr.startsWith( "DnD?>Dice>" )) {
+
+                // Split # dice and dice type
+                QStringList reqVal = qstr.split('>');
+               // qDebug() << reqVal << reqVal.at(2).split('d');
+                QStringList diceTrows = reqVal.at(2).split('D');
+               // qDebug() << diceTrows;
+
+                if(diceTrows.at(1).contains("20")){
+                   // QString diceType("D20");
+                  //  ventilator.send(diceType.toStdString().c_str(), diceType.length());
+                }
+
+
+                // Ints for quantity and type of dice
+                int diceType = diceTrows.last().toInt();
+                int diceQ = diceTrows.first().toInt();
+             //   qDebug() << diceType;
+             //   qDebug() << diceQ;
+                int random = 1 + (rand() % diceType);
+
+                switch (diceType) {
+                case 4:
+                    std::cout << "Asked dice is a D4" << std::endl;
+                    std::cout << "# of trows is " << diceQ << std::endl;
+
+
+                    break;
+                case 6:
+                    std::cout << "Asked dice is a D6" << std::endl;
+                    std::cout << "# of trows is " << diceQ << std::endl;
+                    break;
+                case 8:
+                    std::cout << "Asked dice is a D8" << std::endl;
+                    std::cout << "# of trows is " << diceQ << std::endl;
+                    break;
+                case 10:
+                    std::cout << "Asked dice is a D10" << std::endl;
+                    std::cout << "# of trows is " << diceQ << std::endl;
+                    break;
+                case 12:
+                    std::cout << "Asked dice is a D12" << std::endl;
+                    std::cout << "# of trows is " << diceQ << std::endl;
+                    break;
+                case 20:
+                    std::cout << "Asked dice is a D20" << std::endl;
+                    std::cout << "# of trows is " << diceQ << std::endl;
+                    break;
+                default:
+                    std::cout << "Asked dice does not excist, try again." << std::endl;
+                    std::cout << "Eligible dice values are 2, 4, 6, 8, 10, 12 or 20." << std::endl;
+                    break;
+                }
+
+                /*
+                switch (diceType) {
+                case 1:
+                    cout << "Monday";
+                    break;
+                case 2:
+                    cout << "Tuesday";
+                    break;
+                case 3:
+                    cout << "Wednesday";
+                    break;
+                case 4:
+                    cout << "Thursday";
+                    break;
+                case 5:
+                    cout << "Friday";
+                    break;
+                case 6:
+                    cout << "Saturday";
+                    break;
+                case 7:
+                    cout << "Sunday";
+                    break;
+                }
+*/
+
+                // Get a random number
+            //    int random = 1 + (rand() % diceType);
+                std::cout << "Check OK" << std::endl;
+                ventilator.send(topicStrPub.c_str(), topicStrPub.length());
+                QString dataToSend("value is %1.");
+                dataToSend = dataToSend.arg(random);
+                ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
+            }
+            else
+            {
+                std::cout << "Received : " << qstr.toStdString() << std::endl;
+            }
         }
     }
     catch (zmq::error_t &ex)
