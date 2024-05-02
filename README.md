@@ -47,11 +47,11 @@ Dit programma fungeert als een eenvoudige dienst om willekeurige getallen te gen
 
 Example:
 
-- Client doet een request met "DnD?>Dice>1D6>LordAres>" en krijgt 1 waarde tussen 1 en 6 terug (bv 5) van de service in de vorm "DnD?>Dice>1D6>LordAres>5>"
-- Client doet een request met "DnD?>Dice>2D20>LordAres>" en krijgt 2 waarden tussen 1 en 20 terug (bv 8 en 17) van de service in de vorm "DnD?>Dice>1D6>LordAres>8_17>"
+- Client doet een request met "DnD?>Dice>1D6>LordAres>" en krijgt 1 waarde tussen 1 en 6 terug (bv 5) van de service in de vorm "DnD!>Dice>1D6>LordAres>5>"
+- Client doet een request met "DnD?>Dice>2D20>LordAres>" en krijgt 2 waarden tussen 1 en 20 terug (bv 8 en 17) van de service in de vorm "DnD!>Dice>2D20>LordAres>8_17>"
 
 
 ## **Opmerkingen:**
 - Dit programma gaat uit van een specifiek berichtformaat voor DnD-dobbelsteenworpverzoeken en -antwoorden.
-- In een latere stadium kunnen bijkomende functionaliteiten uitgebreid worden zoals o.a. advantage.
+- In een latere stadium kunnen bijkomende functionaliteiten uitgebreid worden zoals o.a. advantage (bv ADV ipv DICE).
 
