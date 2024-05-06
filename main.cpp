@@ -43,7 +43,8 @@ int main(int argc, char *argv[])
 
 
 
-            std::string topicStrPub = "DnD!>Dice>random";
+            //std::string topicStrPub = "DnD!>Dice>";
+            QString topicStrPub = "DnD!>Dice";
 
             if (qstr.startsWith( "DnD?>Dice>" )) {
 
@@ -52,11 +53,14 @@ int main(int argc, char *argv[])
                // qDebug() << reqVal << reqVal.at(2).split('d');
                 QStringList diceTrows = reqVal.at(2).split('D');
                // qDebug() << diceTrows;
+               // std::string userName = reqVal.at(3).toStdString();
+                QString userName = reqVal.at(3);
+                //qDebug() << userName;
 
-                if(diceTrows.at(1).contains("20")){
+               // if(diceTrows.at(1).contains("20")){
                    // QString diceType("D20");
                   //  ventilator.send(diceType.toStdString().c_str(), diceType.length());
-                }
+               // }
 
 
                 // Ints for quantity and type of dice
@@ -66,7 +70,10 @@ int main(int argc, char *argv[])
              //   qDebug() << diceQ;
                 QStringList finalDices;
                 QString space = " ";
+                QString sep = ">";
                 QString dicesToSend;
+                QStringList msgPubList;
+                QString msgToSend;
 
                 // trow the dices by dicetype
                 switch (diceType) {
@@ -98,8 +105,8 @@ int main(int argc, char *argv[])
 
                     }
                     dicesToSend = finalDices.join(space);
-                    std::cout << dicesToSend.toStdString() << std::endl;
-                    ventilator.send(dicesToSend.toStdString().c_str(), dicesToSend.length());
+                 //   std::cout << dicesToSend.toStdString() << std::endl;
+                 //   ventilator.send(dicesToSend.toStdString().c_str(), dicesToSend.length());
 
 
 
@@ -171,16 +178,22 @@ int main(int argc, char *argv[])
                     break;
                 }
 
+                //Combine message to send
+
+                msgPubList.append(topicStrPub);
+                msgPubList.append(userName);
+                msgPubList.append(dicesToSend);
+                msgToSend = msgPubList.join(sep);
 
                 // Get a random number
             //    int random = 1 + (rand() % diceType);
                 std::cout << "Check OK" << std::endl;
-                ventilator.send(topicStrPub.c_str(), topicStrPub.length());
-              //  QString dataToSend("value is %1.");
-              //  dataToSend = dataToSend.arg(random);
-              //  ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
-                std::cout << dicesToSend.toStdString() << std::endl;
-                ventilator.send(dicesToSend.toStdString().c_str(), dicesToSend.length());
+              //  ventilator.send(topicStrPub.c_str(), topicStrPub.length());
+                //QString dataToSend("value is %1.");
+                //dataToSend = dataToSend.arg(random);
+                //ventilator.send(dataToSend.toStdString().c_str(), dataToSend.length());
+                std::cout << msgToSend.toStdString() << std::endl;
+                ventilator.send(msgToSend.toStdString().c_str(), msgToSend.length());
             }
             else
             {
