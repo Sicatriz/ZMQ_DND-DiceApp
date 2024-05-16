@@ -30,7 +30,8 @@ int main(int argc, char *argv[])
         std::string topicStrSub = "DnD?>Dice>";
         subscriber.setsockopt(ZMQ_SUBSCRIBE, topicStrSub.c_str(), topicStrSub.length());
 
-        while(1){
+        while(1)
+        {
             zmq::message_t msg; // Removed the pointer declaration
 
             // Receive the message directly into msg
