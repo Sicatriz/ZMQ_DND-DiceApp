@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     // Providing a seed value
     srand((unsigned) time(NULL));
 
-    try
+    try    
     {
         zmq::context_t context(1);
 
