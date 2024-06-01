@@ -18,21 +18,17 @@ void MainApplication::run() {
             if(qstr.endsWith(diceRoller.userName))
             {
 
-                if (qstr.contains(">advantage>")) {
-                    // msgToSend = diceRoller.rollWithAdvantage(qstr);
-                    msgToSend = "ADV ROLL";
-                } else if (qstr.contains(">disadvantage>")) {
-                    //  msgToSend = diceRoller.rollWithDisadvantage(qstr);
-                    msgToSend = "DIS_ADV ROLL";
+                if (qstr.contains(">ADV>")) {
+                    msgToSend = diceRoller.rollDiceAdv(qstr);
+                } else if (qstr.contains(">DIS>")) {
+                    msgToSend = diceRoller.rollDiceAdv(qstr);
                 } else {
                     msgToSend = diceRoller.rollDice(qstr);
                 }
 
-
-                // msgToSend = diceRoller.rollDice(qstr);
                 std::cout << "Check OK: " << msgToSend.toStdString() << std::endl;
                 commManager.sendMessage("ventilator", msgToSend.toStdString());
-                // commManager.sendMessage(msgToSend.toStdString());
+
             }
             else
             {
