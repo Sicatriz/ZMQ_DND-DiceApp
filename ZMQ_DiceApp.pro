@@ -9,7 +9,13 @@ LIBS += -L$$PWD/../lib -lzmq -lnzmqt -lws2_32 -lIphlpapi
 INCLUDEPATH += $$PWD/../include
 
 SOURCES += main.cpp \
-    heartbeat.cpp
+    communicationmanager.cpp \
+    diceroller.cpp \
+    heartbeat.cpp \
+    mainapplication.cpp
 
 HEADERS += \
-    heartbeat.h
+    communicationmanager.h \
+    diceroller.h \
+    heartbeat.h \
+    mainapplication.h
