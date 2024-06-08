@@ -44,11 +44,15 @@ Dit programma fungeert als een eenvoudige dienst om willekeurige getallen te gen
 - Compileer en voer het programma uit.
 - Maak verbinding met de gespecificeerde kanalen om DnD-dobbelsteenworpverzoeken te verzenden en willekeurige getallen te ontvangen.
 - De bepaling van de dobbelrange wordt bepaald door het getal van toe te voegen van de gevraagde dobbelsteen.  Bv 4, 6, 8, 10, 12 of 20.  Het aantal gegooide dobbelstenen wordt bepaald door de waarde voor de D.  Bijvoorbeel 1D6 resulteerd in 1 dobbelsteen met een waarde tussen 1 en 6.
+- Alternatief kan er ook met 'advantage' of 'disadvantage' gegooid worden en/of kan er een rol modifier meegegeven worden.
 
 Example:
 
 - Client doet een request met "DnD?>Dice>1D6>LordAres>" en krijgt 1 waarde tussen 1 en 6 terug (bv 5) van de service in de vorm "DnD!>Dice>1D6>LordAres>5>"
 - Client doet een request met "DnD?>Dice>2D20>LordAres>" en krijgt 2 waarden tussen 1 en 20 terug (bv 8 en 17) van de service in de vorm "DnD!>Dice>2D20>LordAres>8_17>"
+- Client doet een request met "DnD?>Dice>ADV>1D20>LordAres" en krijgt een hoogste en laagste worp terug tussen 1 en 20.
+- Client doet een request met "DnD?>Dice>DIS>1D20>LordAres" en krijgt een hoogste en laagste worp terug tussen 1 en 20.
+- Client doet een request met "DnD?>Dice>1D20+3>LordAres" en krijgt een waarde tussen 1 en 20 (+3) terug. De modifier waarde wordt opgeteld of afgetrokken bij de worp.s
 
 
 ## **Opmerkingen:**
