@@ -52,7 +52,7 @@ Example:
 - Client doet een request met "DnD?>Dice>2D20>LordAres>" en krijgt 2 waarden tussen 1 en 20 terug (bv 8 en 17) van de service in de vorm "DnD!>Dice>2D20>LordAres>8_17>"
 - Client doet een request met "DnD?>Dice>ADV>1D20>LordAres" en krijgt een hoogste en laagste worp terug tussen 1 en 20.
 - Client doet een request met "DnD?>Dice>DIS>1D20>LordAres" en krijgt een hoogste en laagste worp terug tussen 1 en 20.
-- Client doet een request met "DnD?>Dice>1D20+3>LordAres" en krijgt een waarde tussen 1 en 20 (+3) terug. De modifier waarde wordt opgeteld of afgetrokken bij de worp.s
+- Client doet een request met "DnD?>Dice>1D20+3>LordAres" en krijgt een waarde tussen 1 en 20 (+3) terug. De modifier waarde wordt opgeteld of afgetrokken bij de worp.
 
 
 ## **Opmerkingen:**
