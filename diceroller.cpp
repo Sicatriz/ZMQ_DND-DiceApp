@@ -1,5 +1,6 @@
 #include "DiceRoller.h"
 #include <cstdlib>
+#include <QDebug>
 
 // ROLL REGULAR DICE
 QString DiceRoller::rollDice(const QString& request) {
@@ -8,29 +9,63 @@ QString DiceRoller::rollDice(const QString& request) {
 
     reqVal = request.split('>');
     diceTrows = reqVal.at(2).split('D');
+    diceCheck = diceTrows.at(1);
+    qDebug() << diceCheck;
     userName = reqVal.at(3);
 
-    diceType = diceTrows.last().toInt();
     diceQ = diceTrows.first().toInt();
+
+
+    if (diceCheck.contains("+")){
+
+        modType = diceTrows.at(1).split('+');
+        qDebug() << modType;
+
+        modValue = modType.last().toInt();
+        // qDebug() << modValue;
+        diceType = modType.first().toInt();
+        // qDebug() << diceType;
+
+    }else if (diceCheck.contains('-')){
+
+        modType = diceTrows.at(1).split('-');
+        qDebug() << modType;
+
+        modValue = modType.last().toInt() *(-1);
+        // qDebug() << modValue;
+        diceType = modType.first().toInt();
+        // qDebug() << diceType;
+
+    } else {
+        modValue = 0;
+        diceType = diceTrows.at(1).toInt();
+    }
+
 
     switch (diceType) {
     case 4:
-        result = roll(diceType, diceQ);
+        tempResult = roll(diceType, diceQ).toInt() + modValue;
+        result = QString::number(tempResult);
         break;
     case 6:
-        result = roll(diceType, diceQ);
+        tempResult = roll(diceType, diceQ).toInt() + modValue;
+        result = QString::number(tempResult);
         break;
     case 8:
-        result = roll(diceType, diceQ);
+        tempResult = roll(diceType, diceQ).toInt() + modValue;
+        result = QString::number(tempResult);
         break;
     case 10:
-        result = roll(diceType, diceQ);
+        tempResult = roll(diceType, diceQ).toInt() + modValue;
+        result = QString::number(tempResult);
         break;
     case 12:
-        result = roll(diceType, diceQ);
+        tempResult = roll(diceType, diceQ).toInt() + modValue;
+        result = QString::number(tempResult);
         break;
     case 20:
-        result = roll(diceType, diceQ);
+        tempResult = roll(diceType, diceQ).toInt() + modValue;
+        result = QString::number(tempResult);
         break;
     default:
         result = "Asked dice does not exist, try again. Eligible dice values are 4, 6, 8, 10, 12 or 20.";

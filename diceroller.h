@@ -9,9 +9,9 @@ class DiceRoller
 public:
     QString rollDice(const QString& request);
     QString rollDiceAdv(const QString& request);
-    QString userName;
-    QStringList diceTrows, reqVal;
-    int diceQ, diceType;
+    QString userName, diceCheck;
+    QStringList diceTrows, reqVal, modType;
+    int diceQ, diceType, modValue, tempResult;
 
 
 private:

@@ -1,4 +1,5 @@
 #include "MainApplication.h"
+#include <QCoreApplication>
 #include <ctime>
 #include <iostream>
 // #include <string>
@@ -15,6 +16,8 @@
 #endif
 
 int main(int argc, char *argv[]) {
+    QCoreApplication app(argc, argv);
+
     srand(static_cast<unsigned>(time(NULL)));
 
     try {
